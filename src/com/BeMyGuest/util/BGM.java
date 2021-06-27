@@ -9,48 +9,68 @@ import com.BeMyGuest.world.Map;
 import com.BeMyGuest.world.lounge.character.NPC;
 
 public class BGM extends JFrame{
+	private Clip nowPlaying;
+	private boolean isPlaying;
+	
 	public BGM() {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setTitle("BGM");
         this.setVisible(true); 
+	}
+	
+	public boolean play(String destination){
+	    try {
+	        URL url = this.getClass().getClassLoader().getResource(destination);
+	        
+	        AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
+
+	        nowPlaying = AudioSystem.getClip();
+
+	        nowPlaying.open(audioIn);
+	        nowPlaying.loop(Clip.LOOP_CONTINUOUSLY);
+
+	        isPlaying = true;
+	        FloatControl gainControl = (FloatControl) nowPlaying.getControl(FloatControl.Type.MASTER_GAIN);
+	        gainControl.setValue(-10.0f);
+	        nowPlaying.start();
+
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
+        }
+	    return true;
    }
-	public void play(NPC which) {
-		
-		try {
-			which.getClip().open(which.getAudioIn());
-		} catch (LineUnavailableException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        which.getClip().loop(Clip.LOOP_CONTINUOUSLY);
+	
+	public boolean changePlay(String destination){
+		nowPlaying.close();
+	    try {
+	        URL url = this.getClass().getClassLoader().getResource(destination);
+	        AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
 
-        which.setThemePlaying(true);
-        FloatControl gainControl = (FloatControl) which.getClip().getControl(FloatControl.Type.MASTER_GAIN);
-        gainControl.setValue(-10.0f);
-        which.getClip().start();
-	}
-	public void stop(NPC which){
-        which.getClip().close();
-        which.setThemePlaying(false); 
-	}
-	public void play(Map which) {
-		
-		try {
-			which.getClip().open(which.getAudioIn());
-		} catch (LineUnavailableException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        which.getClip().loop(Clip.LOOP_CONTINUOUSLY);
+	        nowPlaying = AudioSystem.getClip();
 
-        which.setThemePlaying(true);
-        FloatControl gainControl = (FloatControl) which.getClip().getControl(FloatControl.Type.MASTER_GAIN);
-        gainControl.setValue(-10.0f);
-        which.getClip().start();
-	}
-	public void stop(Map which){
-        which.getClip().close();
-        which.setThemePlaying(false); 
+	        nowPlaying.open(audioIn);
+	        nowPlaying.loop(Clip.LOOP_CONTINUOUSLY);
+
+	        isPlaying = true;
+	        FloatControl gainControl = (FloatControl) nowPlaying.getControl(FloatControl.Type.MASTER_GAIN);
+	        gainControl.setValue(-10.0f);
+	        nowPlaying.start();
+
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
+        }
+	    return true;
+   }
+	public void stop() {
+		nowPlaying.close();
 	}
 }
 

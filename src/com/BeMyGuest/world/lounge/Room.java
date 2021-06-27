@@ -51,16 +51,14 @@ public class Room extends Map{
     
 
     public Room() throws IOException{
+    	bgm = new BGM();
+    	System.out.println(new File("res/world/pic/background/lounge.png").getAbsolutePath());
     	backgroundImage = ImageIO.read(new File("res/world/pic/background/lounge.png"));
-    	
+    	 
+    	System.out.println(backgroundImage);
     	place = "lounge";
-        setBackgroundMusic();
         
-
-        bgm = new BGM();
-        bgm.play(this);
-        
-
+    	this.playTheme(bgm);
         setFocusable(true);
         setBackground(Color.BLACK);
         setDoubleBuffered(true);
@@ -69,15 +67,23 @@ public class Room extends Map{
 
         player = new Player(180, 40);
 
-        bartender = new NPC(790,200, "bartender", 300, 100, "Hi I am bartender");
-        talker = new NPC(15,250, "talker", 300, 50, "I am talker");
-        dealer = new NPC(408, 171, "dealer", 500, 50, "I am dealer");
-        drinker = new NPC(759,455, "drinker", 100, 50, "I am drinker");
-        staff = new NPC(116,43, "staff", 400, 40, "I am staff");
+        bartender = new NPC(790,200, "bartender", 300, 100, false, "Hi I am bartender");
+        talker = new NPC(15,250, "talker", 300, 50, false, "I am talker");
+        dealer = new NPC(408, 171, "dealer", 500, 50, false, "I am dealer");
+        drinker = new NPC(759,455, "drinker", 100, 50, true, "I am drinker");
+        staff = new NPC(116,43, "staff", 400, 40, false, "I am staff");
         
         timer = new Timer(5, this);
         timer.start();
     }
+    
+    public void playTheme(BGM player) {
+		themePlaying = player.play("world/music/"+place+".wav");
+	}
+	public void stopTheme(BGM player) {
+		player.stop();
+		themePlaying = false;
+	}
    
 
     public void paint(Graphics g){
@@ -109,23 +115,25 @@ public class Room extends Map{
         for (int i=0; i<npcList.length; i++) {
         	NPC thisNPC = npcList[i];
         	Communicate alart =npcList[i].getVoice();
-        	if (alart.getVisible()){
+        	if (player.close(thisNPC)){
+        		//draw the communication
                 g2d.drawImage(alart.getBackground(), alart.getX(), alart.getY(), this);
                 g2d.drawString(alart.getQuote(), alart.getX(), alart.getY());
                 
                 if (thisNPC.isFirstNPCCall()){
-                    bgm.stop(npcList[i]);
-                    if(!thisNPC.isThemePlaying()) bgm.play(thisNPC);
+                	this.stopTheme(bgm);
+                    if(!thisNPC.isThemePlaying()) thisNPC.playTheme(bgm);
                     thisNPC.setFirstNPCCall(false);
                 }
                 if (player.yesPressed()){
                     invokeAction(DEALER_ACTION);
                     player.setYes(false);
                 }
+                break;
             }else{
                 if(thisNPC.isThemePlaying()){
-                    bgm.stop(thisNPC);
-                    bgm.play(this);
+                    this.playTheme(bgm);
+                    thisNPC.setThemePlaying(false);
                     alreadyInvoked = false;
                     player.playerBusy(false);
                 }

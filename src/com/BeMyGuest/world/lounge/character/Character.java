@@ -18,9 +18,9 @@ public class Character {
 
     private Image image;
     protected boolean moveable;
-    private Image[][] animation;
-    private static final String[] POS_LIST = {"Back", "Front", "Right","Left"};
-    private String[][] ani = new String[POS_LIST.length][4];
+    protected Image[][] animation;
+    protected static final String[] POS_LIST = {"Back", "Front", "Right","Left"};
+    protected String[][] ani = new String[POS_LIST.length][4];
 
     protected int imageIndex;
     protected int imageDirection; 
@@ -54,13 +54,15 @@ public class Character {
 
         this.name = name;
         initializeAni();
+
         setImage(ani);
     }
     
     public void initializeAni(){
         for (int r=0; r<ani.length; r++){
             for (int c=0; c<ani[0].length; c++){
-                ani[r][c] = "/world/pic/character/" + name+ "/"+ POS_LIST[r] + (c+1) + ".png";
+                ani[r][c] = "world/pic/character/" + name+ "/"+ POS_LIST[r] + (c+1) + ".png";
+
             }
         }
     }

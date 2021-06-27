@@ -24,19 +24,12 @@ public abstract class Map extends JPanel implements ActionListener {
 	protected AudioInputStream audioIn;
 
 	
-	public void setBackgroundMusic() {
-		URL url = BGM.class.getResource("res/world/music/"+place+".wav");
-		System.out.println(url);
-
+	public void playTheme(BGM player) {
+		themePlaying = player.changePlay("res/world/music/"+place+".wav");
+	}
+	public void stopTheme(BGM player) {
+		player.stop();
 		themePlaying = false;
-		
-
-        try {
-        	audioIn = AudioSystem.getAudioInputStream(url);
-			themeClip = AudioSystem.getClip();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 	public void setThemePlaying(boolean playing) {
 		themePlaying = playing;
