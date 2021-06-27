@@ -31,6 +31,7 @@ import com.BeMyGuest.world.lounge.character.Player;
 public class Room extends Map{
 
     private Player player;
+    
     private NPC bartender;
     private NPC talker;
     private NPC dealer;
@@ -45,7 +46,7 @@ public class Room extends Map{
     private final int DRINKER_ACTION = 3;
     private final int STAFF_ACTION = 4;
 
-    private NPC[] npcList = {bartender, talker, dealer, drinker, staff};
+    private NPC[] npcList = new NPC[5];
 
     private BGM bgm;
     
@@ -72,6 +73,14 @@ public class Room extends Map{
         dealer = new NPC(408, 171, "dealer", 500, 50, false, "I am dealer");
         drinker = new NPC(759,455, "drinker", 100, 50, true, "I am drinker");
         staff = new NPC(116,43, "staff", 400, 40, false, "I am staff");
+        
+        npcList[0]=bartender;
+        npcList[1]=talker;
+        npcList[2]=dealer;
+        npcList[3]=drinker;
+        npcList[4]=staff;
+        
+        
         
         timer = new Timer(5, this);
         timer.start();
@@ -132,6 +141,7 @@ public class Room extends Map{
                 break;
             }else{
                 if(thisNPC.isThemePlaying()){
+                	thisNPC.stopTheme(bgm);
                     this.playTheme(bgm);
                     thisNPC.setThemePlaying(false);
                     alreadyInvoked = false;

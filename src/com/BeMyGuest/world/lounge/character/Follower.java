@@ -3,7 +3,7 @@ package com.BeMyGuest.world.lounge.character;
 public class Follower extends Character{
 	private final boolean consumable;
 	public Follower(int x, int y, int f, boolean c, String name) {
-		super(x, y, false, f, name);
+		super(x, y, false, f, false, name);
 		consumable = c;
 	}
 	

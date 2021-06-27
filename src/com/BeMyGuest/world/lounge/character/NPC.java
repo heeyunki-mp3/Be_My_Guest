@@ -12,14 +12,13 @@ public class NPC extends Character{
 	private Communicate voice;
 
 	private boolean themePlaying;
-	private boolean walkingAround;
+
 	
 	private boolean firstNPCCall;
 	public NPC(int x, int y, String name, int f, int c, boolean walkable,String quote) {
-		super(x, y, false, f, name);
+		super(x, y, false, f, walkable, name);
 		CLOSE_ENOUGH = c;
 		voice = new Communicate(100,50,quote); // TODO: try num
-		walkingAround = walkable;
 		firstNPCCall = true;
 		
 		themePlaying = false;
@@ -36,6 +35,7 @@ public class NPC extends Character{
         return CLOSE_ENOUGH;
 	}
 	
+	@Override
 	public void initializeAni(){
 		if(walkingAround) {
 			super.initializeAni();
@@ -50,7 +50,7 @@ public class NPC extends Character{
 	
 	@Override
 	protected void moveHelp(){
-		imageDirection =(int) (Math.random()*POS_LIST.length);
+		animateTurn();
 		if (walkingAround) {
 			boolean move = (int)(Math.random()*2) == 0;
 			if(move) {
@@ -68,6 +68,14 @@ public class NPC extends Character{
 			}
 		}
     }
+	protected void animateTurn() {
+		
+        
+        if (frame == 1){
+        	System.out.println(name + " turn frame " + frame + "out of " + FRAME_SPEED);
+        	imageDirection =(int) (Math.random()*POS_LIST.length);
+        }
+	}
 	
 	public Communicate getVoice() {
 		return voice;

@@ -17,7 +17,10 @@ public class Character {
     protected String name;
 
     private Image image;
+    
     protected boolean moveable;
+	protected boolean walkingAround; //for NPC
+	
     protected Image[][] animation;
     protected static final String[] POS_LIST = {"Back", "Front", "Right","Left"};
     protected String[][] ani = new String[POS_LIST.length][4];
@@ -33,7 +36,7 @@ public class Character {
     protected final int SPEED = 2;
    
 
-    private final int FRAME_SPEED;
+    protected final int FRAME_SPEED;
 
     private boolean canUp = true;
     private boolean canDown = true;
@@ -42,7 +45,7 @@ public class Character {
 
     private ArrayList<Follower> followers;
 
-    public Character(int x, int y, boolean m, int f, String name){
+    public Character(int x, int y, boolean m, int f, boolean w, String name){
         this.x = x;
         this.y = y;
         imageIndex = 0;
@@ -51,6 +54,8 @@ public class Character {
         followers = new ArrayList<Follower>();
 
         moveable = m;
+		walkingAround = w;
+
 
         this.name = name;
         initializeAni();
@@ -72,10 +77,12 @@ public class Character {
 
         ImageIcon ii;
         for (int r=0; r<imgLoc.length; r++){
-            //System.out.println(imgLoc[r]);
+          //  System.out.println(imgLoc[r]);
             for (int c=0; c<imgLoc[0].length; c++){
-                ii = new ImageIcon(this.getClass().getResource(imgLoc[r][c]));
-                //System.out.println(imgLoc[r][c]);
+                System.out.println(imgLoc[r][c]);
+
+                ii = new ImageIcon(this.getClass().getClassLoader().getResource(imgLoc[r][c]));
+               
                 animation[r][c] = ii.getImage();
             }
         }
@@ -132,7 +139,7 @@ public class Character {
         }
     }
 
-    private int frame = 0;
+    protected int frame = 0;
     protected void animate(){
         frame ++;
         frame %= FRAME_SPEED;
@@ -140,6 +147,7 @@ public class Character {
             imageIndex = 0;
         }
         else if (frame == 0){
+        	System.out.println(name + " frame " + frame + "out of " + FRAME_SPEED);
             imageIndex = ((imageIndex +1) % (animation[0].length));
         }
     }

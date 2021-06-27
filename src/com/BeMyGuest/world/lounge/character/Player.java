@@ -13,45 +13,45 @@ public class Player extends Character{
     private boolean actionOn;
     
     public Player(int x, int y) {
-        super(x, y, true, 30, "user");
+        super(x, y, true, 30, false, "user");
         
     }
 
     public void keyClick(KeyHandler key){  
-        if (moveable){  
-            if(key.up.down) {
-                up = true;
-            }else {
-                up = false;
-            }
-            if(key.down.down) {
-                down = true;
-            }else {
-                down = false;
-            }
-            if(key.left.down) {
-                left = true;		
-            }else {
-                left= false;
-            }
-            if(key.right.down) {
-                right = true;
-            }else {
-                right = false;
-            } 
-            if(key.yes.down && !actionOn){
-                System.out.println("yes pressed");
-                yes = true;
-            }else{
-                yes = false;
-            }
-            if(actionOn){
-                key.release(KeyHandler.YES);
-            }
+   
+        if(key.up.down) {
+            up = true;
+        }else {
+            up = false;
         }
+        if(key.down.down) {
+            down = true;
+        }else {
+            down = false;
+        }
+        if(key.left.down) {
+            left = true;		
+        }else {
+            left= false;
+        }
+        if(key.right.down) {
+            right = true;
+        }else {
+            right = false;
+        } 
+        if(key.yes.down && !actionOn){
+            System.out.println("yes pressed");
+            yes = true;
+        }else{
+            yes = false;
+        }
+        if(actionOn){
+            key.release(KeyHandler.YES);
+        }
+    
         move();
     }
-    
+   
     @Override
 	protected void moveHelp(){
         if(up) {imageDirection = UP; dy = -SPEED;}
