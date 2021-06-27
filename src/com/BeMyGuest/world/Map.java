@@ -25,7 +25,7 @@ public abstract class Map extends JPanel implements ActionListener {
 
 	
 	public void setBackgroundMusic() {
-		URL url = this.getClass().getClassLoader().getResource(place+".wav");
+		URL url = this.getClass().getClassLoader().getResource("/bin/world/music"+place+".wav");
 		System.out.println(url);
 
 		themePlaying = false;

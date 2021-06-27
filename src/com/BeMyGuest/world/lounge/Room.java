@@ -51,9 +51,10 @@ public class Room extends Map{
     
 
     public Room() throws IOException{
-    	 backgroundImage = ImageIO.read(new File("lounge.png"));
+    	System.out.println(new File("res/world/pic/background/lounge.png").getAbsolutePath());
+    	backgroundImage = ImageIO.read(new File("res/world/pic/background/lounge.png"));
     	 
-    	 System.out.println(backgroundImage);
+    	System.out.println(backgroundImage);
     	place = "lounge";
         setBackgroundMusic();
         
