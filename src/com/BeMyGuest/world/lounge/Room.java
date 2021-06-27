@@ -51,9 +51,8 @@ public class Room extends Map{
     
 
     public Room() throws IOException{
-    	 backgroundImage = ImageIO.read(new File("lounge.png"));
-    	 
-    	 System.out.println(backgroundImage);
+    	backgroundImage = ImageIO.read(new File("res/world/pic/background/lounge.png"));
+    	
     	place = "lounge";
         setBackgroundMusic();
         
@@ -61,7 +60,6 @@ public class Room extends Map{
         bgm = new BGM();
         bgm.play(this);
         
-        backgroundImage = ImageIO.read(new File("/world/pic/background/lounge.png"));
 
         setFocusable(true);
         setBackground(Color.BLACK);
