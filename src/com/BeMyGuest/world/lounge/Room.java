@@ -21,6 +21,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import com.BeMyGuest.mini_game.voltorb_flip.VoltorbFlipGUI;
 import com.BeMyGuest.util.BGM;
 import com.BeMyGuest.util.KeyHandler;
 import com.BeMyGuest.world.Communicate;
@@ -236,11 +237,11 @@ public class Room extends Map{
             System.out.println("deal!");
             System.out.println("dealer invoked " + alreadyInvoked);
             alreadyInvoked = true;
-         /*   try {
-                VoltropFlipGUI.setOld(new VoltropFlipGUI());                
+            try {
+                VoltorbFlipGUI.setOld(new VoltorbFlipGUI());                
             } catch (IOException e) {
                 e.printStackTrace();
-            } */
+            } 
             player.playerBusy(true);  
         }else if (which == "bartender" && !alreadyInvoked){
             System.out.println("Wine!");

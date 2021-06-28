@@ -1,3 +1,5 @@
+package com.BeMyGuest.world;
+
 import java.awt.Image;
 import java.util.ArrayList;
 
