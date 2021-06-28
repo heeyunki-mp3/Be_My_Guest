@@ -21,6 +21,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import com.BeMyGuest.mini_game.are_you_ok.MentalTest;
 import com.BeMyGuest.mini_game.voltorb_flip.VoltorbFlipGUI;
 import com.BeMyGuest.util.BGM;
 import com.BeMyGuest.util.KeyHandler;
@@ -254,7 +255,7 @@ public class Room extends Map{
             System.out.println("Talk!");
             System.out.println("talker invoked " + alreadyInvoked);
             alreadyInvoked = true;
-            //new Test();
+            new MentalTest();
             player.playerBusy(true);
         }else if (which == "drinker" && !alreadyInvoked){
             System.out.println("Drink!");
