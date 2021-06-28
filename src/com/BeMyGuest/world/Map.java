@@ -12,6 +12,8 @@ import javax.swing.Timer;
 
 import com.BeMyGuest.util.BGM;
 import com.BeMyGuest.util.KeyHandler;
+import com.BeMyGuest.world.lounge.character.Character;
+
 
 public abstract class Map extends JPanel implements ActionListener {
 	protected Timer timer;
@@ -42,5 +44,8 @@ public abstract class Map extends JPanel implements ActionListener {
 	}
 	public AudioInputStream getAudioIn() {
 		return audioIn;
+	}
+	public void checkObstacles(Character who) {
+		
 	}
 }

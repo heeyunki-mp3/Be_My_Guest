@@ -1,6 +1,7 @@
 package com.BeMyGuest.world.lounge.character;
 
 import com.BeMyGuest.util.KeyHandler;
+import com.BeMyGuest.world.Map;
 
 public class Player extends Character{
 
@@ -12,8 +13,8 @@ public class Player extends Character{
     
     private boolean actionOn;
     
-    public Player(int x, int y) {
-        super(x, y, true, 30, false, "user");
+    public Player(int x, int y, Map p) {
+        super(x, y, true, 30, false, "user", p);
         
     }
 
@@ -48,7 +49,7 @@ public class Player extends Character{
         if(actionOn){
             key.release(KeyHandler.YES);
         }
-    
+        checkCanBe(place);
         move();
     }
    

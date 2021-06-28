@@ -13,13 +13,13 @@ public class Communicate {
 	private boolean visible;
 	
 	public Communicate(int width, int height, String quote) {
-		image = createImage(width, height, Color.orange);
+		image = createImage(width, height, new Color(243,181,154,200));
 		this.quote = quote;
 		x = 0;
 		y = 0;
 	}
 	public Communicate(int width, int height, int x, int y, String quote) {
-		image = createImage(width, height, Color.orange);
+		image = createImage(width, height, new Color(233,171,154,150));
 		this.quote = quote;
 		this.x = x;
 		this.y = y;

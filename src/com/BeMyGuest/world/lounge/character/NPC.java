@@ -6,6 +6,7 @@ import javax.sound.sampled.*;
 
 import com.BeMyGuest.util.BGM;
 import com.BeMyGuest.world.Communicate;
+import com.BeMyGuest.world.Map;
 
 public class NPC extends Character{
 	private final int CLOSE_ENOUGH;
@@ -15,10 +16,17 @@ public class NPC extends Character{
 
 	
 	private boolean firstNPCCall;
-	public NPC(int x, int y, String name, int f, int c, boolean walkable,String quote) {
-		super(x, y, false, f, walkable, name);
+	public NPC(int x, int y, String name, int f, int c, boolean walkable,String quote, Map p) {
+		super(x, y, false, f, walkable, name, p);
 		CLOSE_ENOUGH = c;
-		voice = new Communicate(100,50,quote); // TODO: try num
+		
+		int height = 40;
+		if (quote.indexOf("\n") > 0)
+		{
+			height =80;
+		}
+		
+		voice = new Communicate(15*quote.length(),height,quote); // TODO: try num
 		firstNPCCall = true;
 		
 		themePlaying = false;
@@ -47,13 +55,13 @@ public class NPC extends Character{
             ani[r][0] = "world/pic/character/" + name+ "/"+ POS_LIST[r] + ".png";
         }
     }
-	
+	private boolean move = false;
 	@Override
 	protected void moveHelp(){
 		animateTurn();
 		if (walkingAround) {
-			boolean move = (int)(Math.random()*2) == 0;
 			if(move) {
+				checkCanBe(place);
 		        if(imageDirection == UP) {dy = -SPEED;}
 				else {dy = 0;}
 		        
@@ -66,14 +74,19 @@ public class NPC extends Character{
 		        if(imageDirection == RIGHT) {imageDirection = RIGHT; dx = SPEED;}
 				else if (imageDirection != LEFT) {dx = 0;}
 			}
+			else {
+				dy=0;
+				dx=0;
+			}
 		}
     }
+
 	protected void animateTurn() {
-		
-        
-        if (frame == 1){
-        	System.out.println(name + " turn frame " + frame + "out of " + FRAME_SPEED);
+        if (frame==2){
+        	//determines which direction it will turn
         	imageDirection =(int) (Math.random()*POS_LIST.length);
+			//determines if it will move forward or not
+        	move = ((int)(Math.random()*3) ==1);
         }
 	}
 	
