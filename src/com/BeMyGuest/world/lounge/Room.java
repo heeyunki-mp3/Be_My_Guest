@@ -162,9 +162,9 @@ public class Room extends Map{
         	Communicate alart =npcList[i].getVoice();
         	if (player.close(thisNPC)){
         		//draw the communication
+        		//draw the background box of the alart
                 g2d.drawImage(alart.getBackground(), alart.getX(), alart.getY(), this);
-        	    
-        		
+                //draw the content (words) of the npc
         		int lineHeight = g.getFontMetrics().getHeight();
         		int fontSize = 25;
         		g2d.setFont(new Font("Helvetica", Font.BOLD, fontSize)); 
@@ -174,7 +174,6 @@ public class Room extends Map{
                     g2d.drawString(quote,  alart.getX()+10, alart.getY()+(fontSize*line));
                 	line ++;
             		g2d.setFont(new Font("Helvetica", Font.PLAIN, fontSize -5)); 
-
                 }
                 
                 if (thisNPC.isFirstNPCCall()){
@@ -198,7 +197,6 @@ public class Room extends Map{
                 thisNPC.setFirstNPCCall(true);
             }
         }
-        
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
     }
@@ -206,13 +204,16 @@ public class Room extends Map{
     @Override
     public void actionPerformed(ActionEvent e) {  
         checkEvent();
+        //moving followers
         for (int i=0; i<player.getFollowers().size();i++){
             player.getFollowers().get(i).move();
         }
         for (int i=0; i<drinker.getFollowers().size();i++){
             drinker.getFollowers().get(i).move();
         }
+        //moving user
         player.keyClick(key);
+        //moving npc
         bartender.move();
         dealer.move();
         talker.move();
@@ -244,7 +245,7 @@ public class Room extends Map{
         }else if (which == "bartender" && !alreadyInvoked){
             System.out.println("Wine!");
             System.out.println("bartneder invoked " + alreadyInvoked);
-            player.addFollower(new Follower(player.getX()+10, player.getY(), 400, true, "wine", this));
+            player.addFollower(new Follower(player.getX()+10, player.getY(), 400, true, "wine", this, 6));
             alreadyInvoked = true;
             player.playerBusy(true);
 

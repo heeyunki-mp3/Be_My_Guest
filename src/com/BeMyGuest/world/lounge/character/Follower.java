@@ -4,9 +4,10 @@ import com.BeMyGuest.world.Map;
 
 public class Follower extends Character{
 	private final boolean consumable;
-	public Follower(int x, int y, int f, boolean c, String name, Map m) {
-		super(x, y, false, f, false, name, m);
+	public Follower(int x, int y, int f, boolean c, String name, Map m, int numFace) {
+		super(x, y, false, f, false, name, m, numFace);
 		consumable = c;
+		
 	}
 	
 	@Override
@@ -26,5 +27,11 @@ public class Follower extends Character{
     }
 	public boolean isConsumable() {
 		return consumable;
+	}
+	public int getWidth() {
+		return animation[0][0].getWidth(null);
+	}
+	public int getHeight() {
+		return animation[0][0].getHeight(null);
 	}
 }
