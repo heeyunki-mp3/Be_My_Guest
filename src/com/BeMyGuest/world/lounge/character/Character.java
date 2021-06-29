@@ -7,36 +7,10 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 import com.BeMyGuest.util.KeyHandler;
+import com.BeMyGuest.world.Entity;
 import com.BeMyGuest.world.Map;
 
-public class Character {
-    protected int dx;
-    protected int dy;
-    protected int x;
-    protected int y;
-    
-    protected String name;
-
-    private Image image;
-    
-    protected boolean moveable;
-	protected boolean walkingAround; //for NPC
-	
-    protected Image[][] animation;
-    protected static final String[] POS_LIST = {"Back", "Front", "Right","Left"};
-    protected String[][] ani;
-
-    protected int imageIndex;
-    protected int imageDirection; 
-
-    public final int UP =0;
-    public final int DOWN = 1;
-    public final int RIGHT = 2;
-    public final int LEFT = 3;
-
-    protected final int SPEED = 2;
-   
-
+public class Character extends Entity{
     protected final int FRAME_SPEED;
 
     private boolean canUp = true;
@@ -90,10 +64,10 @@ public class Character {
     
     
     public void initializeAni(){
-    	System.out.println(name + " r: "+ ani.length + " c: "+ ani[0].length);
+    	//System.out.println(name + " r: "+ ani.length + " c: "+ ani[0].length);
         for (int r=0; r<ani.length; r++){
             for (int c=0; c<ani[0].length; c++){
-                ani[r][c] = "world/pic/character/" + name+ "/"+ POS_LIST[r] + (c+1) + ".png";
+                ani[r][c] = "world/pic/character/" + name+ "/"+ POS_LIST[r] + (c+1) + ".png";//TODO chance the url for small ones
             }
         }
     }
@@ -158,8 +132,6 @@ public class Character {
         for (int i = 0; i<followers.size(); i++){
         	//followers.get(i).setX(this.x-dx*20-dx*i*20);
         	//followers.get(i).setY(this.y-dy*20-dy*i*20);
-        	
-        	
         	
         	if ((this.x - followers.get(i).getX())*dx < 0){ //if follower and owner will collide
         		followers.get(i).setX(x);
@@ -274,26 +246,4 @@ public class Character {
     public void setPlace(Map p) {
     	place = p;
     }
-    public int getX() {
-        return x;
-    }
-    public String getName() {
-    	return name;
-    }
-
-    public int getY() {
-        return y;
-    }
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public void setY(int y) {
-       this.y = y;
-    }
-
-    public Image getImage() {
-        return animation[imageDirection][imageIndex];
-    }
-    
 }

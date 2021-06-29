@@ -79,7 +79,7 @@ public class Player extends Character{
 
     public boolean close(NPC other){
         int npcCloseness = other.getCloseEnough();
-        if ((Math.abs(this.x -other.x) < npcCloseness) && (Math.abs(this.y - other.y)<npcCloseness)){
+        if ((Math.abs(this.x -other.getX()) < npcCloseness) && (Math.abs(this.y - other.getY())<npcCloseness)){
             //System.out.println("Close to " + other);
             return true;
         }

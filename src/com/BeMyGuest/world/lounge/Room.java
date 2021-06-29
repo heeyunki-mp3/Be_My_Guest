@@ -33,6 +33,7 @@ import com.BeMyGuest.world.lounge.character.Character;
 import com.BeMyGuest.world.lounge.character.Follower;
 import com.BeMyGuest.world.lounge.character.NPC;
 import com.BeMyGuest.world.lounge.character.Player;
+import com.BeMyGuest.world.street.StreetFrame;
 
 public class Room extends Map{
 
@@ -267,11 +268,11 @@ public class Room extends Map{
             System.out.println("Exit!");
             System.out.println("exit invoked " + alreadyInvoked);
             alreadyInvoked = true;
-            /*try {
-                new Observatory();
+            try {
+                new StreetFrame();
             } catch (IOException e) {
                 e.printStackTrace();
-            }*/
+            }
             player.playerBusy(true);
         }
     }

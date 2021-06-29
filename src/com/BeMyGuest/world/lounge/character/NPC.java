@@ -20,11 +20,7 @@ public class NPC extends Character{
 		super(x, y, false, f, walkable, name, p);
 		CLOSE_ENOUGH = c;
 		
-		int height = 40;
-		if (quote.indexOf("\n") > 0)
-		{
-			height =80;
-		}
+		int height =35*quote.split("\n").length;
 		
 		voice = new Communicate(15*quote.length(),height,quote); // TODO: try num
 		firstNPCCall = true;
