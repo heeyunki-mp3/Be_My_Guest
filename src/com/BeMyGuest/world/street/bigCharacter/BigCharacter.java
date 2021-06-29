@@ -33,7 +33,6 @@ public class BigCharacter extends Entity {
 
     }
     public void initializeAni(){
-    	System.out.println(name + " r: "+ ani.length + " c: "+ ani[0].length);
         for (int r=0; r<ani.length; r++){
             for (int c=0; c<ani[0].length; c++){
                 ani[r][c] = "world/pic/character/" + name+ "/big/"+ POS_LIST[r] + (c+1) + ".png";
@@ -50,7 +49,6 @@ public class BigCharacter extends Entity {
             for (int c=0; c<imgLoc[0].length; c++){
                 System.out.println(imgLoc[r][c]);
                 
-
                 ii = new ImageIcon(this.getClass().getClassLoader().getResource(imgLoc[r][c]));
                
                 animation[r][c] = ii.getImage();
@@ -61,7 +59,7 @@ public class BigCharacter extends Entity {
     protected void animate(){
         frame ++;
         frame %= FRAME_SPEED;
-        if (dx==0 && dy==0){
+        if (dx==0 && dy==0 && (imageDirection ==LEFT ||imageDirection == RIGHT)){
             imageIndex = 0;
         }
         else if (frame == 0){

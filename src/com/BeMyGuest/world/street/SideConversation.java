@@ -1,5 +1,6 @@
 package com.BeMyGuest.world.street;
 
+import java.awt.Color;
 import java.awt.Image;
 
 import com.BeMyGuest.world.Communicate;
@@ -24,7 +25,7 @@ public class SideConversation  {
 			{
 				if (line.length()>maxLine) maxLine = line.length();
 			}
-			communications[i] = new Communicate(50+ 12*maxLine,40*quote[i].split("\n").length,quote[i]);
+			communications[i] = new Communicate(50+ 12*maxLine,40*quote[i].split("\n").length,quote[i],new Color(60,111,129, 230));
 		}
 	}
 	

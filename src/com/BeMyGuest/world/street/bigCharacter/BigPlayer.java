@@ -10,18 +10,17 @@ public class BigPlayer extends BigCharacter {
 	public void keyClick(KeyHandler key){  
         if(key.up.down) {
             imageDirection = DOWN;
-            up = true;
-        }else {
-            up = false;
-        }
-        if(key.down.down) {
-            imageDirection = UP;
             down = true;
         }else {
             down = false;
         }
+        if(key.down.down) {
+            imageDirection = UP;
+            up = true;
+        }else {
+            up = false;
+        }
         if(key.left.down) {
-            System.out.println("left clicked in player");
             imageDirection = LEFT;
             left = true;		
         }else {
