@@ -70,6 +70,10 @@ public class Player extends Character{
         actionOn = busy;
     }
     
+    public boolean getPlayerBusy() {
+    	return actionOn;
+    }
+    
     public boolean yesPressed(){
         return yes;
     }

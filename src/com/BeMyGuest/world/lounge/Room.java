@@ -217,11 +217,13 @@ public class Room extends Map{
         //moving user
         player.keyClick(key);
         //moving npc
-        bartender.move();
-        dealer.move();
-        talker.move();
-        drinker.move(); 
-        staff.move();
+        if (!player.getPlayerBusy()) {
+	        bartender.move();
+	        dealer.move();
+	        talker.move();
+	        drinker.move(); 
+	        staff.move();
+        }
         repaint();
     }
 
