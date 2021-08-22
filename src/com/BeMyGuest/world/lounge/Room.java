@@ -70,7 +70,7 @@ public class Room extends Map{
 
     public Room() throws IOException{
     	bgm = new BGM();
-    	System.out.println(new File("res/world/pic/background/lounge.png").getAbsolutePath());
+    	//System.out.println(new File("res/world/pic/background/lounge.png").getAbsolutePath());
     	backgroundImage = ImageIO.read(new File("res/world/pic/background/lounge.png"));
     	 
     	System.out.println(backgroundImage);
@@ -164,6 +164,7 @@ public class Room extends Map{
         	NPC thisNPC = npcList[i];
         	Communicate alart =npcList[i].getVoice();
         	if (player.close(thisNPC)){
+        		thisNPC.setStop(true);
         		//draw the communication
         		//draw the background box of the alart
                 g2d.drawImage(alart.getBackground(), alart.getX(), alart.getY(), this);
@@ -171,10 +172,10 @@ public class Room extends Map{
         		int lineHeight = g.getFontMetrics().getHeight();
         		int fontSize = 25;
         		g2d.setFont(new Font("Helvetica", Font.BOLD, fontSize)); 
-        		g2d.setColor(new Color(60,111,129));
+        		g2d.setColor(new Color(17,136,206));
         		int line = 1;
                 for (String quote : alart.getQuote().split("\n")) {
-                    g2d.drawString(quote,  alart.getX()+10, alart.getY()+(fontSize*line));
+                    g2d.drawString(quote,  alart.getX()+40, alart.getY()+(fontSize*line));
                 	line ++;
             		g2d.setFont(new Font("Helvetica", Font.PLAIN, fontSize -5)); 
                 }
@@ -191,6 +192,7 @@ public class Room extends Map{
                 break;
             }else{
                 if(thisNPC.isThemePlaying()){
+                	thisNPC.setStop(false);
                 	thisNPC.stopTheme(bgm);
                     this.playTheme(bgm);
                     thisNPC.setThemePlaying(false);

@@ -4,6 +4,10 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public class Communicate {
 	private Image image;
@@ -13,20 +17,35 @@ public class Communicate {
 	private boolean visible;
 	
 	public Communicate(int width, int height, String quote) {
-		image = createImage(width, height, new Color(243,181,154,200));
+		try {
+			image = ImageIO.read(new File("res/world/pic/util/textbox.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		//image = createImage(width, height, new Color(243,181,154,200));
 		this.quote = quote;
-		x = 0;
+		x = 30;
 		y = 0;
 	}
 	public Communicate(int width, int height, int x, int y, String quote) {
-		image = createImage(width, height, new Color(233,171,154,150));
+		try {
+			image = ImageIO.read(new File("res/world/pic/util/textbox.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		//image = createImage(width, height, new Color(233,171,154,150));
 		this.quote = quote;
 		this.x = x;
 		this.y = y;
 	}
 	
 	public Communicate(int width, int height,  String quote, Color bg) {
-		image = createImage(width, height, bg);
+		try {
+			image = ImageIO.read(new File("res/world/pic/util/textbox.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		//image = createImage(width, height, bg);
 		
 		this.quote = quote;
 		x=100;

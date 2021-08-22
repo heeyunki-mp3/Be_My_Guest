@@ -17,6 +17,11 @@ public class Character extends Entity{
     private boolean canDown = true;
     private boolean canRight = true;
     private boolean canLeft = true;
+    
+    /**
+     * this is to make the NPC stop moving when the user is talking it him/her
+     */
+    protected boolean stop = false;
 
     private ArrayList<Follower> followers;
     
@@ -89,16 +94,18 @@ public class Character extends Entity{
     }
     
     public void move() {
-        moveHelp();
-        animate();
-        
-        if (dx !=0 || dy!=0) {
-        	moveFollowerPos();
-        }
-        removeFollower();
-        
-        x += dx;
-        y += dy;
+    	if (!stop) {
+	        moveHelp();
+	        animate();
+	        
+	        if (dx !=0 || dy!=0) {
+	        	moveFollowerPos();
+	        }
+	        removeFollower();
+	        
+	        x += dx;
+	        y += dy;
+    	}
     }
     
     protected void moveHelp(){
@@ -216,6 +223,9 @@ public class Character extends Entity{
     public boolean moveable(){
         return moveable;
     }
+    public void setMoveable(boolean m){
+        moveable = m;
+    }
     
     //for checking if there are obstacles in front
     public boolean canUp() {
@@ -245,5 +255,8 @@ public class Character extends Entity{
     
     public void setPlace(Map p) {
     	place = p;
+    }
+    public void setStop(boolean s) {
+    	stop = s;
     }
 }

@@ -57,7 +57,7 @@ public class Street extends Map{
 		g2d.setColor(new Color(233,171,154));
 		int line = 0;
         for (String quote : talks.getQuote().split("\n")) {
-            g2d.drawString(quote, talks.getX()+10, talks.getY()+25+((int)(fontSize*line*1.4)));
+            g2d.drawString(quote, talks.getX()+40, talks.getY()+25+((int)(fontSize*line*1.4)));
         	line ++;
         }
         

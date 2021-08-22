@@ -13,9 +13,8 @@ public class NPC extends Character{
 	private Communicate voice;
 
 	private boolean themePlaying;
-
-	
 	private boolean firstNPCCall;
+	
 	public NPC(int x, int y, String name, int f, int c, boolean walkable,String quote, Map p) {
 		super(x, y, false, f, walkable, name, p);
 		CLOSE_ENOUGH = c;
@@ -101,5 +100,6 @@ public class NPC extends Character{
 	public void setFirstNPCCall(boolean first) {
 		firstNPCCall = first;
 	}
+
 
 }

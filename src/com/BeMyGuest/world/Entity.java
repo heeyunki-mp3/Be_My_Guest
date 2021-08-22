@@ -14,6 +14,8 @@ public abstract class Entity {
     protected String name;
     private Image image;
     protected boolean moveable;
+	
+
 	protected boolean walkingAround; //for NPC
 	
     protected Image[][] animation;
@@ -51,4 +53,10 @@ public abstract class Entity {
     public Image getImage() {
         return animation[imageDirection][imageIndex];
     }
+    public boolean isMoveable() {
+		return moveable;
+	}
+	public void setMoveable(boolean moveable) {
+		this.moveable = moveable;
+	}
 }
